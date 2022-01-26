@@ -17,7 +17,7 @@ function App() {
       setTimeout(() => {
         setTodos(todos.map(todo => ({ ...todo,active:true })));
         setLoading(false);
-      }, 2000);
+      }, 10);
     });
   }, []);
 

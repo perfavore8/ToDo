@@ -1,21 +1,7 @@
 import React, { useContext } from "react";
 import PropTypes from 'prop-types';
 import Context from "../context";
-
-const styles ={
-    li: {
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'space-between',
-        padding: '.5rem 1rem',
-        border: '1px solid #ccc',
-        borderRadius: '4px',
-        marginBottom: '.5rem'
-    },
-    input:{
-        marginRight: '1rem'
-    }
-};
+import './index.css';
 
 function ToDoItem({ todo, index, onChange, activeToggle }) {
     const { removeTodo } = useContext(Context);
@@ -28,13 +14,17 @@ function ToDoItem({ todo, index, onChange, activeToggle }) {
         classes.push('unActive');
     }
 
-    return <li style={styles.li} >
+    return <li className="li" >
         <input 
-          type='checkbox' 
-          checked={todo.completed}
-          style={styles.input} 
-          onChange={() => todo.active === true && onChange(todo.id)} />
-      <span className={"home-title"} onClick={() => {
+            type='checkbox' 
+            id={todo.id}
+            checked={todo.completed}
+            className="custom-checkbox"
+            onChange={() => todo.active === true && onChange(todo.id)} />
+        <label htmlFor={todo.id} />
+      <span 
+      {...todo.active ? className="container" : className="containerUnactive"}
+       onClick={() => {
         todo.completed !== true && activeToggle(todo.id)
         onChange(false);
     }}>
